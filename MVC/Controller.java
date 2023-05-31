@@ -83,9 +83,9 @@ class listenerAdaugaProduse implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
 			int id_cautat=Integer.parseInt(my_view.getTextField_idProduse());
-			ProduseBLL a=new ProduseBLL();
-			Produse produs=a.findProduseById(id_cautat);
-			Produse produsUpdate=a.findProduseById(id_cautat);
+			ProduseBLL aux=new ProduseBLL();
+			Produse produs=aux.findProduseById(id_cautat);
+			Produse produsUpdate=aux.findProduseById(id_cautat);
 			produs.setCantitate(Integer.parseInt(my_view.getTextField_cantitateComenzi()));
 			if(produs.getCantitate()>produsUpdate.getCantitate())
 				{Rezultate("CANTITATE INSUFICIENTA!");
@@ -93,10 +93,10 @@ class listenerAdaugaProduse implements ActionListener{
 			else {
 				produseAdaugatePerClient.add(produs);
 				produsUpdate.setCantitate(produsUpdate.getCantitate() - Integer.parseInt(my_view.getTextField_cantitateComenzi()));
-				String de = a.update(produsUpdate);
-				ComenziBLL aC = new ComenziBLL();
+				String sir = aux.update(produsUpdate);
+				ComenziBLL aux2 = new ComenziBLL();
 				Comenzi i = new Comenzi(my_view.getTextField_idClient(), my_view.getTextField_numeProdus(), Integer.parseInt(my_view.getTextField_cantitateComenzi()));
-				aC.insert(i);
+				aux2.insert(i);
 				Rezultate("SUCCES");
 			}
 		}catch(Exception ex)
@@ -155,7 +155,7 @@ class listenerVizualizareClienti implements ActionListener{
 class listenerVizualizareComenzi implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
-			ClientiBLL a=new ClientiBLL();
+			ClientiBLL bll=new ClientiBLL();
 			my_view.getResultFrame().dispose();
 			List<Comenzi> afisare= new ArrayList<Comenzi>();
 			ComenziBLL aux=new ComenziBLL();
@@ -194,9 +194,9 @@ class listenerVizualizareProduse implements ActionListener{
 class listenerInsertClienti implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
-			ClientiBLL a=new ClientiBLL();
-			Clienti t=new Clienti(my_view.getTextField_numeClienti(),my_view.getTextField_prenumeClienti(),my_view.getTextField_emailClienti(),my_view.getTextField_telefonClienti(),my_view.getTextField_adresaClienti());
-			Rezultate(a.insert(t));
+			ClientiBLL bll=new ClientiBLL();
+			Clienti aux=new Clienti(my_view.getTextField_numeClienti(),my_view.getTextField_prenumeClienti(),my_view.getTextField_emailClienti(),my_view.getTextField_telefonClienti(),my_view.getTextField_adresaClienti());
+			Rezultate(bll.insert(aux));
 			
 		}catch(Exception ex)
 		{
@@ -207,9 +207,9 @@ class listenerInsertClienti implements ActionListener{
 class listenerInsertProduse implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
-			ProduseBLL a=new ProduseBLL();
-			Produse t=new Produse(my_view.getTextField_numeProduse(),Integer.parseInt(my_view.getTextField_cantitateProduse()));
-			Rezultate(a.insert(t));
+			ProduseBLL bll=new ProduseBLL();
+			Produse aux=new Produse(my_view.getTextField_numeProduse(),Integer.parseInt(my_view.getTextField_cantitateProduse()));
+			Rezultate(bll.insert(aux));
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
@@ -219,9 +219,9 @@ class listenerInsertProduse implements ActionListener{
 class listenerStergProduse implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
-			ProduseBLL a=new ProduseBLL();
-			Produse t=new Produse(Integer.parseInt(my_view.getTextField_idProduse()),my_view.getTextField_numeProduse(),Integer.parseInt(my_view.getTextField_cantitateProduse()));
-			Rezultate(a.delete(t));
+			ProduseBLL bll=new ProduseBLL();
+			Produse aux=new Produse(Integer.parseInt(my_view.getTextField_idProduse()),my_view.getTextField_numeProduse(),Integer.parseInt(my_view.getTextField_cantitateProduse()));
+			Rezultate(bll.delete(aux));
 			
 		}catch(Exception ex)
 		{
@@ -232,9 +232,9 @@ class listenerStergProduse implements ActionListener{
 class listenerDeleteClienti implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
-			ClientiBLL a=new ClientiBLL();
-			Clienti t=new Clienti(Integer.parseInt(my_view.getTextField_idClienti()),my_view.getTextField_numeClienti(),my_view.getTextField_prenumeClienti(),my_view.getTextField_emailClienti(),my_view.getTextField_telefonClienti(),my_view.getTextField_adresaClienti());
-			Rezultate(a.delete(t));
+			ClientiBLL bll=new ClientiBLL();
+			Clienti aux=new Clienti(Integer.parseInt(my_view.getTextField_idClienti()),my_view.getTextField_numeClienti(),my_view.getTextField_prenumeClienti(),my_view.getTextField_emailClienti(),my_view.getTextField_telefonClienti(),my_view.getTextField_adresaClienti());
+			Rezultate(bll.delete(aux));
 			
 		}catch(Exception ex)
 		{
@@ -245,9 +245,9 @@ class listenerDeleteClienti implements ActionListener{
 class listenerUpdateProduse implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
-			ProduseBLL a=new ProduseBLL();
-			Produse t=new Produse(Integer.parseInt(my_view.getTextField_idProduse()),my_view.getTextField_numeProduse(),Integer.parseInt(my_view.getTextField_cantitateProduse()));
-			Rezultate(a.update(t));
+			ProduseBLL bll=new ProduseBLL();
+			Produse aux=new Produse(Integer.parseInt(my_view.getTextField_idProduse()),my_view.getTextField_numeProduse(),Integer.parseInt(my_view.getTextField_cantitateProduse()));
+			Rezultate(bll.update(aux));
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
@@ -257,9 +257,9 @@ class listenerUpdateProduse implements ActionListener{
 class listenerUpdateClienti implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
-			ClientiBLL a=new ClientiBLL();
-			Clienti t=new Clienti(Integer.parseInt(my_view.getTextField_idClienti()),my_view.getTextField_numeClienti(),my_view.getTextField_prenumeClienti(),my_view.getTextField_emailClienti(),my_view.getTextField_telefonClienti(),my_view.getTextField_adresaClienti());
-			Rezultate(a.update(t));
+			ClientiBLL bll=new ClientiBLL();
+			Clienti aux=new Clienti(Integer.parseInt(my_view.getTextField_idClienti()),my_view.getTextField_numeClienti(),my_view.getTextField_prenumeClienti(),my_view.getTextField_emailClienti(),my_view.getTextField_telefonClienti(),my_view.getTextField_adresaClienti());
+			Rezultate(bll.update(aux));
 		}catch(Exception ex)
 		{
 			ex.printStackTrace();
